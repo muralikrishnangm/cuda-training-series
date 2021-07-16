@@ -95,6 +95,13 @@ What does the performance look like compared to exercise 1? It should look prett
 
 If you need help, refer to *streams_solution.cu*.
 
+To run jobs with different stream counts:
+```
+nvcc -Xcompiler -fopenmp -o streams_solution streams_solution.cu -DUSE_STREAMS
+for i in `seq 1 8`; do echo $i; OMP_NUM_THREADS=$i ./streams_solution ; done
+```
+
+
 ## **3. Bonus Task - Multi-GPU**
 
 Remember that a CUDA stream is tied to a particular GPU. How can we combine CPU threading with more than a single GPU? If you're feeling adventurous, try adapting this homework's code to submit work to 4 GPUs, instead of just one. Note that this will require keeping track of which CUDA stream was bound to which GPU when it was created. Feel free to increase the problem size in order to ensure that there is enough work to observe a performance impact. Compile and run your code using the following instructions. 
